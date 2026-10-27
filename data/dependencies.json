@@ -1071,7 +1071,7 @@
     "topicId": "cnm_p136",
     "prerequisiteId": "cnm_p082",
     "strength": "hard",
-    "reason": "学习「用数对确定位置」需要先掌握「东北、东南、西北、西南」。"
+    "reason": "学习「用有序数对确定位置」需要先掌握「东北、东南、西北、西南」。"
   },
   {
     "topicId": "cnm_p137",
@@ -1449,19 +1449,19 @@
     "topicId": "cnm_p178",
     "prerequisiteId": "cnm_p177",
     "strength": "hard",
-    "reason": "学习「分数乘分数」需要先掌握「分数乘整数」。"
+    "reason": "学习「一个数乘分数」需要先掌握「分数乘整数」。"
   },
   {
     "topicId": "cnm_p178",
     "prerequisiteId": "cnm_p133",
     "strength": "hard",
-    "reason": "学习「分数乘分数」需要先掌握「小数乘小数」。"
+    "reason": "学习「一个数乘分数」需要先掌握「小数乘小数」。"
   },
   {
     "topicId": "cnm_p179",
     "prerequisiteId": "cnm_p178",
     "strength": "hard",
-    "reason": "学习「分数乘法的应用」需要先掌握「分数乘分数」。"
+    "reason": "学习「分数乘法的应用」需要先掌握「一个数乘分数」。"
   },
   {
     "topicId": "cnm_p179",
@@ -1473,25 +1473,25 @@
     "topicId": "cnm_p180",
     "prerequisiteId": "cnm_p136",
     "strength": "hard",
-    "reason": "学习「根据方向和距离确定位置」需要先掌握「用数对确定位置」。"
+    "reason": "学习「用方向和距离确定位置」需要先掌握「用有序数对确定位置」。"
   },
   {
     "topicId": "cnm_p180",
     "prerequisiteId": "cnm_p099",
     "strength": "hard",
-    "reason": "学习「根据方向和距离确定位置」需要先掌握「线段、直线和射线」。"
+    "reason": "学习「用方向和距离确定位置」需要先掌握「线段、直线和射线」。"
   },
   {
     "topicId": "cnm_p181",
     "prerequisiteId": "cnm_p180",
     "strength": "hard",
-    "reason": "学习「描述简单路线图」需要先掌握「根据方向和距离确定位置」。"
+    "reason": "学习「描述简单路线图」需要先掌握「用方向和距离确定位置」。"
   },
   {
     "topicId": "cnm_p182",
     "prerequisiteId": "cnm_p178",
     "strength": "hard",
-    "reason": "学习「分数除以整数」需要先掌握「分数乘分数」。"
+    "reason": "学习「分数除以整数」需要先掌握「一个数乘分数」。"
   },
   {
     "topicId": "cnm_p183",
@@ -1746,12 +1746,6 @@
     "reason": "学习「圆柱的体积」需要先掌握「长方体和正方体的体积」。"
   },
   {
-    "topicId": "cnm_p208",
-    "prerequisiteId": "cnm_p207",
-    "strength": "hard",
-    "reason": "学习「圆柱的表面积」需要先掌握「圆柱的体积」。"
-  },
-  {
     "topicId": "cnm_p209",
     "prerequisiteId": "cnm_p207",
     "strength": "hard",
@@ -1785,7 +1779,7 @@
     "topicId": "cnm_p212",
     "prerequisiteId": "cnm_p180",
     "strength": "hard",
-    "reason": "学习「比例尺」需要先掌握「根据方向和距离确定位置」。"
+    "reason": "学习「比例尺」需要先掌握「用方向和距离确定位置」。"
   },
   {
     "topicId": "cnm_p213",
@@ -1917,7 +1911,7 @@
     "topicId": "cnm_081",
     "prerequisiteId": "cnm_p136",
     "strength": "hard",
-    "reason": "学习「有序数对」需要先会小学的「用数对确定位置」。小学已学用数对表示位置。"
+    "reason": "学习「有序数对」需要先会小学的「用有序数对确定位置」。小学已学用数对表示位置。"
   },
   {
     "topicId": "cnm_102",
@@ -21478,5 +21472,107 @@
     "prerequisiteId": "cnc_p483",
     "strength": "hard",
     "reason": "写毕业赠言之前，要先会围绕一个意思选择材料。"
+  },
+  {
+    "topicId": "cnm_p246",
+    "prerequisiteId": "cnm_p178",
+    "strength": "hard",
+    "reason": "学习「倒数的认识」需要先掌握「一个数乘分数」。"
+  },
+  {
+    "topicId": "cnm_p246",
+    "prerequisiteId": "cnm_p177",
+    "strength": "soft",
+    "reason": "「分数乘整数」对学习「倒数的认识」有帮助，但不会前者也可以开始学后者。"
+  },
+  {
+    "topicId": "cnm_p182",
+    "prerequisiteId": "cnm_p246",
+    "strength": "hard",
+    "reason": "学习「分数除以整数」需要先掌握「倒数的认识」。"
+  },
+  {
+    "topicId": "cnm_p247",
+    "prerequisiteId": "cnm_p178",
+    "strength": "hard",
+    "reason": "学习「分数、小数混合运算及运算律」需要先掌握「一个数乘分数」。"
+  },
+  {
+    "topicId": "cnm_p247",
+    "prerequisiteId": "cnm_p133",
+    "strength": "hard",
+    "reason": "学习「分数、小数混合运算及运算律」需要先掌握「小数乘小数」。"
+  },
+  {
+    "topicId": "cnm_p247",
+    "prerequisiteId": "cnm_p117",
+    "strength": "soft",
+    "reason": "「用运算律简便计算」对学习「分数、小数混合运算及运算律」有帮助，但不会前者也可以开始学后者。"
+  },
+  {
+    "topicId": "cnm_p179",
+    "prerequisiteId": "cnm_p247",
+    "strength": "soft",
+    "reason": "「分数、小数混合运算及运算律」对学习「分数乘法的应用」有帮助，但不会前者也可以开始学后者。"
+  },
+  {
+    "topicId": "cnm_p208",
+    "prerequisiteId": "cnm_p206",
+    "strength": "hard",
+    "reason": "学习「圆柱的表面积」需要先掌握「圆柱的认识」。"
+  },
+  {
+    "topicId": "cnm_p208",
+    "prerequisiteId": "cnm_p190",
+    "strength": "soft",
+    "reason": "求圆柱侧面积常用底面周长×高，宜先熟悉「圆的周长」。"
+  },
+  {
+    "topicId": "cnm_p248",
+    "prerequisiteId": "cnm_p206",
+    "strength": "hard",
+    "reason": "学习「圆锥的认识」宜先掌握「圆柱的认识」，对照底面与高。"
+  },
+  {
+    "topicId": "cnm_p248",
+    "prerequisiteId": "cnm_p188",
+    "strength": "hard",
+    "reason": "圆锥底面是圆，需先掌握「圆的认识」。"
+  },
+  {
+    "topicId": "cnm_p209",
+    "prerequisiteId": "cnm_p248",
+    "strength": "hard",
+    "reason": "学习「圆锥的体积」需要先掌握「圆锥的认识」。"
+  },
+  {
+    "topicId": "cnm_p249",
+    "prerequisiteId": "cnm_p212",
+    "strength": "hard",
+    "reason": "图形放大缩小与比例尺同属按比变换，需先掌握「比例尺」。"
+  },
+  {
+    "topicId": "cnm_p249",
+    "prerequisiteId": "cnm_p210",
+    "strength": "soft",
+    "reason": "理解对应边成比例，宜先熟悉「比例的意义和基本性质」。"
+  },
+  {
+    "topicId": "cnm_p250",
+    "prerequisiteId": "cnm_p185",
+    "strength": "hard",
+    "reason": "齿数比是比，需先掌握「比的意义」。"
+  },
+  {
+    "topicId": "cnm_p250",
+    "prerequisiteId": "cnm_p190",
+    "strength": "hard",
+    "reason": "车轮周长用圆的周长，需先掌握「圆的周长」。"
+  },
+  {
+    "topicId": "cnm_p250",
+    "prerequisiteId": "cnm_p213",
+    "strength": "soft",
+    "reason": "档位与行进关系可联系正比例思考。"
   }
 ]

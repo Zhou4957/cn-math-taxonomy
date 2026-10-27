@@ -5145,7 +5145,7 @@
   },
   {
     "id": "cnm_p136",
-    "name": "用数对确定位置",
+    "name": "用有序数对确定位置",
     "domain": "图形与几何",
     "grade": 6,
     "semester": "上",
@@ -5164,13 +5164,14 @@
     "standards": [
       {
         "id": "cms-2022:3.GG.09",
-        "confidence": "exact"
+        "confidence": "exact",
+        "note": "新版目录作「用有序数对确定位置」。"
       }
     ]
   },
   {
     "id": "cnm_p180",
-    "name": "根据方向和距离确定位置",
+    "name": "用方向和距离确定位置",
     "domain": "图形与几何",
     "grade": 6,
     "semester": "上",
@@ -5189,7 +5190,8 @@
     "standards": [
       {
         "id": "cms-2022:3.GG.08",
-        "confidence": "exact"
+        "confidence": "exact",
+        "note": "新版目录作「用方向和距离确定位置」。"
       }
     ]
   },
@@ -5245,7 +5247,7 @@
   },
   {
     "id": "cnm_p178",
-    "name": "分数乘分数",
+    "name": "一个数乘分数",
     "domain": "数与代数",
     "grade": 6,
     "semester": "上",
@@ -5264,7 +5266,8 @@
     "standards": [
       {
         "id": "cms-2022:3.NA.04",
-        "confidence": "exact"
+        "confidence": "exact",
+        "note": "新版目录作「一个数乘分数」（含分数乘分数）。"
       }
     ]
   },
@@ -5919,12 +5922,64 @@
     ]
   },
   {
+    "id": "cnm_p246",
+    "name": "倒数的认识",
+    "domain": "数与代数",
+    "grade": 6,
+    "semester": "上",
+    "chapter": "六年级上册 第3单元 分数除法",
+    "type": "conceptual",
+    "description": "知道乘积是 1 的两个数互为倒数，会求一个数（整数或分数）的倒数。",
+    "mastery_criteria": [
+      "能判断两个数是否互为倒数",
+      "会求整数或分数的倒数"
+    ],
+    "diagnostic_question": {
+      "question": "3/4 的倒数是多少？",
+      "answer": "4/3"
+    },
+    "external": false,
+    "standards": [
+      {
+        "id": "cms-2022:3.NA.04",
+        "confidence": "inferred",
+        "note": "新版六上第3单元首节「倒数的认识」；内容要求未点名倒数，待核。"
+      }
+    ]
+  },
+  {
+    "id": "cnm_p247",
+    "name": "分数、小数混合运算及运算律",
+    "domain": "数与代数",
+    "grade": 6,
+    "semester": "上",
+    "chapter": "六年级上册 第2单元 分数乘法",
+    "type": "procedural",
+    "description": "会进行分数与小数的混合运算，能用乘法运算律使计算简便。",
+    "mastery_criteria": [
+      "能正确计算分数与小数的两步混合运算",
+      "能用运算律进行简便计算"
+    ],
+    "diagnostic_question": {
+      "question": "计算：0.5×2/5＝？",
+      "answer": "1/5"
+    },
+    "external": false,
+    "standards": [
+      {
+        "id": "cms-2022:3.NA.04",
+        "confidence": "inferred",
+        "note": "新版六上第2单元小节「分数、小数混合运算及运算律」；按目录自编，待核。"
+      }
+    ]
+  },
+  {
     "id": "cnm_p216",
     "name": "鸽巢问题",
     "domain": "综合与实践",
     "grade": 6,
     "semester": "上",
-    "chapter": "六年级上册 第7单元 数学广角——鸽巢问题",
+    "chapter": "六年级上册 第6单元 复习与关联",
     "type": "reasoning",
     "description": "知道物体数比抽屉数多时，必有一个抽屉至少放两个物体。",
     "mastery_criteria": [
@@ -5940,7 +5995,7 @@
       {
         "id": "cms-2022:3.NA.06",
         "confidence": "inferred",
-        "note": "鸽巢问题是现行六年级下册数学广角，内容要求没有同名条款，待核。"
+        "note": "新版六上无独立数学广角单元；鸽巢问题见第6单元复习与关联「应用提升」，本图谱改挂此处（原误挂第7单元数学广角）。内容要求没有同名条款，待核。"
       }
     ]
   },
@@ -6020,6 +6075,32 @@
     ]
   },
   {
+    "id": "cnm_p248",
+    "name": "圆锥的认识",
+    "domain": "图形与几何",
+    "grade": 6,
+    "semester": "下",
+    "chapter": "六年级下册 第3单元 圆柱与圆锥",
+    "type": "conceptual",
+    "description": "认识圆锥的底面、高和顶点，知道底面是圆，从顶点到底面圆心的距离是高。",
+    "mastery_criteria": [
+      "能说出圆锥的底面是一个圆",
+      "能指出圆锥的高和顶点"
+    ],
+    "diagnostic_question": {
+      "question": "圆锥的底面是什么形状？",
+      "answer": "是一个圆"
+    },
+    "external": false,
+    "standards": [
+      {
+        "id": "cms-2022:3.GG.05",
+        "confidence": "exact",
+        "note": "现行六下第3单元「圆锥的认识」；新版六下未出，按 dzkbw xs6x_new 小节补点。"
+      }
+    ]
+  },
+  {
     "id": "cnm_p209",
     "name": "圆锥的体积",
     "domain": "图形与几何",
@@ -6027,14 +6108,14 @@
     "semester": "下",
     "chapter": "六年级下册 第3单元 圆柱与圆锥",
     "type": "procedural",
-    "description": "知道圆锥的体积是等底等高圆柱体积的三分之一。",
+    "description": "知道圆锥的体积是等底等高圆柱体积的三分之一，会用公式计算圆锥体积。",
     "mastery_criteria": [
       "能说出圆锥体积等于等底等高圆柱的三分之一",
       "能计算简单的圆锥体积"
     ],
     "diagnostic_question": {
-      "question": "圆锥的底面是什么形状？",
-      "answer": "是一个圆"
+      "question": "等底等高的圆锥体积是同底同高圆柱体积的几分之几？",
+      "answer": "三分之一"
     },
     "external": false,
     "standards": [
@@ -6203,6 +6284,32 @@
     ]
   },
   {
+    "id": "cnm_p249",
+    "name": "图形的放大与缩小",
+    "domain": "图形与几何",
+    "grade": 6,
+    "semester": "下",
+    "chapter": "六年级下册 第4单元 比例",
+    "type": "procedural",
+    "description": "会按给定的比把简单图形放大或缩小，知道对应边成比例、对应角相等。",
+    "mastery_criteria": [
+      "能按给定的比算出放大或缩小后的边长",
+      "知道放大或缩小后图形的形状不变"
+    ],
+    "diagnostic_question": {
+      "question": "把边长 2 厘米的正方形按 1:3 放大，新正方形边长是多少厘米？",
+      "answer": "6"
+    },
+    "external": false,
+    "standards": [
+      {
+        "id": "cms-2022:3.GG.04",
+        "confidence": "inferred",
+        "note": "现行六下第4单元「图形的放大与缩小」；按目录自编，待核。新版六下未出。"
+      }
+    ]
+  },
+  {
     "id": "cnm_p213",
     "name": "正比例",
     "domain": "数与代数",
@@ -6276,6 +6383,32 @@
       {
         "id": "cms-2022:3.NA.08",
         "confidence": "exact"
+      }
+    ]
+  },
+  {
+    "id": "cnm_p250",
+    "name": "自行车里的数学",
+    "domain": "综合与实践",
+    "grade": 6,
+    "semester": "下",
+    "chapter": "六年级下册 综合与实践 自行车里的数学",
+    "type": "reasoning",
+    "description": "综合运用圆、比例等知识，探究普通自行车和变速自行车中齿数比与行进距离的关系。",
+    "mastery_criteria": [
+      "能根据齿数比判断踏一圈车轮大约转几圈",
+      "能比较不同档位下骑行同样距离谁更省力或更快"
+    ],
+    "diagnostic_question": {
+      "question": "自行车前齿轮 48 齿、后齿轮 16 齿。脚蹬转 1 圈，后轮大约转几圈？",
+      "answer": "3"
+    },
+    "external": false,
+    "standards": [
+      {
+        "id": "cms-2022:3.NA.08",
+        "confidence": "inferred",
+        "note": "现行六下综合与实践「自行车里的数学」；按齿数比与行进关系自编，待核。新版六下未出。"
       }
     ]
   },
