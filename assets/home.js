@@ -3,13 +3,13 @@
   'use strict';
   var raw = location.hash.replace(/^#/, '');
   try { raw = decodeURIComponent(raw); } catch (e) { /* 保持原样 */ }
-  if (/^(?:cnm|cne|cnp|cnc)_[A-Za-z0-9]+$/.test(raw)) return;
+  if (/^(?:cnm|cne|cnp|cnc|cns|cnd)_[A-Za-z0-9]+$/.test(raw)) return;
 
   var CN = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九'];
   var subjectParam = new URLSearchParams(location.search).get('subject');
-  var subject = subjectParam === 'english' || subjectParam === 'physics' || subjectParam === 'chinese' ? subjectParam : 'math';
-  var PREFIX = { math: 'cnm_', english: 'cne_', physics: 'cnp_', chinese: 'cnc_' };
-  var STD_PREFIX = { math: 'cms-', english: 'ces-', physics: 'cps-', chinese: 'ccs-' };
+  var subject = subjectParam === 'english' || subjectParam === 'physics' || subjectParam === 'chinese' || subjectParam === 'science' || subjectParam === 'morality' ? subjectParam : 'math';
+  var PREFIX = { math: 'cnm_', english: 'cne_', physics: 'cnp_', chinese: 'cnc_', science: 'cns_', morality: 'cnd_' };
+  var STD_PREFIX = { math: 'cms-', english: 'ces-', physics: 'cps-', chinese: 'ccs-', science: 'css-', morality: 'cds-' };
 
   function withSubject(href) {
     if (subject === 'math' || !href || href.indexOf('subject=') >= 0 || href.indexOf('http') === 0) return href;
@@ -19,6 +19,8 @@
   document.body.classList.toggle('subject-english', subject === 'english');
   document.body.classList.toggle('subject-physics', subject === 'physics');
   document.body.classList.toggle('subject-chinese', subject === 'chinese');
+  document.body.classList.toggle('subject-science', subject === 'science');
+  document.body.classList.toggle('subject-morality', subject === 'morality');
   document.querySelectorAll('.subject-link').forEach(function (link) {
     var on = link.getAttribute('data-subject') === subject;
     link.classList.toggle('on', on);
@@ -69,6 +71,32 @@
       zdemo.setAttribute('href', 'diagnose/?subject=chinese&grade=' + encodeURIComponent('一上') + '&demo=1');
       zdemo.textContent = '先看一遍演示：一年级上册语文';
     }
+  } else if (subject === 'science') {
+    document.title = '小学科学 · 中小学·高中知识图谱';
+    var seye = document.querySelector('.eyebrow');
+    if (seye) seye.textContent = '科学：小学一至六年级 · 教科版';
+    var sprimary = document.querySelector('.hero-actions a.btn-primary');
+    var sbrowse = document.querySelector('.hero-actions a.btn:not(.btn-primary)');
+    if (sprimary) sprimary.setAttribute('href', 'diagnose/?subject=science');
+    if (sbrowse) sbrowse.setAttribute('href', 'explore/?subject=science');
+    var sdemo = document.querySelector('.quiet-link a');
+    if (sdemo) {
+      sdemo.setAttribute('href', 'diagnose/?subject=science&grade=' + encodeURIComponent('一上') + '&demo=1');
+      sdemo.textContent = '先看一遍演示：一年级上册科学';
+    }
+  } else if (subject === 'morality') {
+    document.title = '小学道德与法治 · 中小学·高中知识图谱';
+    var meye = document.querySelector('.eyebrow');
+    if (meye) meye.textContent = '道德与法治：小学一至六年级 · 统编版';
+    var mprimary = document.querySelector('.hero-actions a.btn-primary');
+    var mbrowse = document.querySelector('.hero-actions a.btn:not(.btn-primary)');
+    if (mprimary) mprimary.setAttribute('href', 'diagnose/?subject=morality');
+    if (mbrowse) mbrowse.setAttribute('href', 'explore/?subject=morality');
+    var mdemo = document.querySelector('.quiet-link a');
+    if (mdemo) {
+      mdemo.setAttribute('href', 'diagnose/?subject=morality&grade=' + encodeURIComponent('一上') + '&demo=1');
+      mdemo.textContent = '先看一遍演示：一年级上册道德与法治';
+    }
   }
 
   function setText(id, value) {
@@ -107,6 +135,8 @@
       if (id.indexOf('cne_') === 0) return 'english';
       if (id.indexOf('cnp_') === 0) return 'physics';
       if (id.indexOf('cnc_') === 0) return 'chinese';
+      if (id.indexOf('cns_') === 0) return 'science';
+      if (id.indexOf('cnd_') === 0) return 'morality';
       return 'math';
     }
     function subjectOfStd(id) {
@@ -114,11 +144,13 @@
       if (id.indexOf('ces-') === 0) return 'english';
       if (id.indexOf('cps-') === 0) return 'physics';
       if (id.indexOf('ccs-') === 0) return 'chinese';
+      if (id.indexOf('css-') === 0) return 'science';
+      if (id.indexOf('cds-') === 0) return 'morality';
       return 'math';
     }
     var wantEnglish = subject === 'english';
     var wantPhysics = subject === 'physics';
-    var wantChinese = subject === 'chinese';
+    var wantChinese = subject === 'chinese' || subject === 'science' || subject === 'morality';
     topics = topics.filter(function (topic) { return (topic.subject || subjectOfId(topic.id)) === subject; });
     deps = deps.filter(function (edge) { return subjectOfId(edge.topicId) === subject; });
     questions = questions.filter(function (question) { return subjectOfId(question.topicId) === subject; });
@@ -163,7 +195,7 @@
       addCard(g, g <= 6 ? '小学' : (wantPhysics ? '初中物理' : '初中'), CN[g] + '年级', g <= 6 ? 'is-primary' : 'is-junior', splitText, href);
     }
     if (wantChinese) {
-      /* 小学语文只到六年级 */
+      /* 小学语文、小学科学、小学道德与法治只到六年级 */
     } else if (wantPhysics) {
       addCard(10, '高中物理', '必修一', 'is-senior', '必修第一册', 'explore/?subject=physics&grade=10');
       addCard(11, '高中物理', '必修二', 'is-senior', '必修第二册', 'explore/?subject=physics&grade=11');
