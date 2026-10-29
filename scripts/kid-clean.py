@@ -4,6 +4,7 @@
 - 去掉首页智商测试卡片、诊断结果页的测评链接段
 - 关闭统计上报（endpoint 清空，不向原作者的统计端发数据）
 - 分享图二维码指向本站
+- 去掉首页导航跳 pansgo.com 的「资源搜索」外链（网盘搜索）
 原作者署名与许可证不动。文件不存在或内容已变时跳过对应项，不报错。
 """
 import re, pathlib, sys
@@ -20,6 +21,7 @@ def edit(rel, fn):
 
 for rel in ['index.html','explore/index.html','diagnose/index.html','children/index.html','children/history.html']:
     edit(rel, lambda t: re.sub(r'\s*<a class="top-banner"[^>]*>.*?</a>', '', t, count=1))
+    edit(rel, lambda t: re.sub(r'\s*<a[^>]*href="https://pansgo\.com"[^>]*>.*?</a>', '', t, count=1, flags=re.S))
 edit('index.html', lambda t: re.sub(r'\s*<a class="iq-card"[^>]*>.*?</a>', '', t, count=1, flags=re.S))
 edit('diagnose/app.js', lambda t: re.sub(r"\n\s*page\.append\(h\('p', \{ class: 'iq-line'.*?\}\)\);\n", "\n", t, count=1, flags=re.S))
 edit('diagnose/share.js', lambda t: t.replace("https://math.pansgo.com/?from=share", "https://zhou4957.github.io/cn-math-taxonomy/?from=share"))
