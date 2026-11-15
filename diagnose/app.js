@@ -1327,6 +1327,8 @@
 
     page.append(standardsCard(sum));
     page.append(logCard());
+    show(page);
+    mountPathGraph(sum);
   }
 
   function stat(cls, n, label) { return h('div', { class: 'stat ' + cls }, h('b', { text: String(n) }), label); }
