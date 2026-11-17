@@ -62,8 +62,9 @@ TOOLS_BLOCK = """
     <a class="stat-card" href="https://qwerty.kaiyi.cool/" target="_blank" rel="noopener noreferrer"><div class="stat-num">⌨️ Qwerty Learner</div><div class="stat-label">打字背单词：选中考 / 高考词库，接键盘练</div></a>
     <a class="stat-card" href="english/"><div class="stat-num">🇬🇧 英语精选</div><div class="stat-label">Awesome English 精选版：听力 · 视频 · 阅读 · 语法 · 词汇，中文导航、已过滤成人与社交类</div></a>
     <a class="stat-card" href="https://xckevin.github.io/magic-english-buddy/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🧙 Magic English Buddy</div><div class="stat-label">分级阅读跟读：L1–L7 共 90 篇故事，逐词高亮朗读、点词查词，在设置里下载音频后可离线</div></a>
+    <a class="stat-card" href="https://gjenglish.com" target="_blank" rel="noopener noreferrer"><div class="stat-num">⭐ 英语星空</div><div class="stat-label">人教版初中英语：课文原声点读（七上到九年级）· 单词插画 · 中考真题，点一句读一句</div></a>
   </div>
-  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
+  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
 """
 def add_tools(t):
     if 'kid-tools' in t: return t
@@ -92,3 +93,13 @@ def add_buddy_card(t):
     return t.replace(anchor, anchor + BUDDY_CARD, 1)
 edit('index.html', add_buddy_card)
 edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
+
+# 英语星空入口：工具箱已有 Buddy 卡但缺英语星空卡时补卡（幂等）
+GALAXY_CARD = '    <a class="stat-card" href="https://gjenglish.com" target="_blank" rel="noopener noreferrer"><div class="stat-num">⭐ 英语星空</div><div class="stat-label">人教版初中英语：课文原声点读（七上到九年级）· 单词插画 · 中考真题，点一句读一句</div></a>\n'
+def add_galaxy_card(t):
+    if 'gjenglish.com' in t: return t
+    anchor = '在设置里下载音频后可离线</div></a>\n'
+    if anchor not in t: return t
+    return t.replace(anchor, anchor + GALAXY_CARD, 1)
+edit('index.html', add_galaxy_card)
+edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
