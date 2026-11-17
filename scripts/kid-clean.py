@@ -63,8 +63,9 @@ TOOLS_BLOCK = """
     <a class="stat-card" href="english/"><div class="stat-num">🇬🇧 英语精选</div><div class="stat-label">Awesome English 精选版：听力 · 视频 · 阅读 · 语法 · 词汇，中文导航、已过滤成人与社交类</div></a>
     <a class="stat-card" href="https://xckevin.github.io/magic-english-buddy/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🧙 Magic English Buddy</div><div class="stat-label">分级阅读跟读：L1–L7 共 90 篇故事，逐词高亮朗读、点词查词，在设置里下载音频后可离线</div></a>
     <a class="stat-card" href="https://gjenglish.com" target="_blank" rel="noopener noreferrer"><div class="stat-num">⭐ 英语星空</div><div class="stat-label">人教版初中英语：课文原声点读（七上到九年级）· 单词插画 · 中考真题，点一句读一句</div></a>
+    <a class="stat-card" href="https://congcongstudy.velixir.run/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🎓 聪聪学堂</div><div class="stat-label">四学段全科互动课程（小学到大学）：课文听读 · 单元练习，初中英语有人教 / 外研 / 沪教 / 译林多版本</div></a>
   </div>
-  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
+  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。</p>
 """
 def add_tools(t):
     if 'kid-tools' in t: return t
@@ -103,3 +104,13 @@ def add_galaxy_card(t):
     return t.replace(anchor, anchor + GALAXY_CARD, 1)
 edit('index.html', add_galaxy_card)
 edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
+
+# 聪聪学堂入口：工具箱已有英语星空卡但缺聪聪学堂卡时补卡（幂等）
+CONG_CARD = '    <a class="stat-card" href="https://congcongstudy.velixir.run/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🎓 聪聪学堂</div><div class="stat-label">四学段全科互动课程（小学到大学）：课文听读 · 单元练习，初中英语有人教 / 外研 / 沪教 / 译林多版本</div></a>\n'
+def add_cong_card(t):
+    if 'congcongstudy' in t: return t
+    anchor = '点一句读一句</div></a>\n'
+    if anchor not in t: return t
+    return t.replace(anchor, anchor + CONG_CARD, 1)
+edit('index.html', add_cong_card)
+edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。'))
