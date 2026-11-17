@@ -52,4 +52,21 @@ def fix_result(t):
     k = t.find('\n', j)
     return t[:k+1] + '    show(page);\n    mountPathGraph(sum);\n' + t[k+1:]
 edit('diagnose/app.js', fix_result)
+# 课外工具箱入口（PhET / GeoGebra / Qwerty Learner）：同步后若被上游覆盖则补回，幂等
+TOOLS_BLOCK = """
+  <!-- kid-tools -->
+  <h2 class="section-title">课外工具箱</h2>
+  <div class="stat-grid">
+    <a class="stat-card" href="https://phet.colorado.edu/zh_CN/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🧪 PhET</div><div class="stat-label">互动仿真实验：物理 · 化学 · 生物 · 数学，拖一拖就懂（中文）</div></a>
+    <a class="stat-card" href="https://www.geogebra.org/classic" target="_blank" rel="noopener noreferrer"><div class="stat-num">📐 GeoGebra</div><div class="stat-label">几何与函数动态绘图：初中几何 · 高中函数</div></a>
+    <a class="stat-card" href="https://qwerty.kaiyi.cool/" target="_blank" rel="noopener noreferrer"><div class="stat-num">⌨️ Qwerty Learner</div><div class="stat-label">打字背单词：选中考 / 高考词库，接键盘练</div></a>
+  </div>
+  <p class="stat-note">以上是站外工具，点开会在新页面打开；Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
+"""
+def add_tools(t):
+    if 'kid-tools' in t: return t
+    anchor = '  <div class="grade-grid" id="grades" aria-busy="true"></div>\n'
+    if anchor not in t: return t
+    return t.replace(anchor, anchor + TOOLS_BLOCK, 1)
+edit('index.html', add_tools)
 print('kid-clean done')
