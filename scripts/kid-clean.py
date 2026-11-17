@@ -60,8 +60,9 @@ TOOLS_BLOCK = """
     <a class="stat-card" href="https://phet.colorado.edu/zh_CN/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🧪 PhET</div><div class="stat-label">互动仿真实验：物理 · 化学 · 生物 · 数学，拖一拖就懂（中文）</div></a>
     <a class="stat-card" href="https://www.geogebra.org/classic" target="_blank" rel="noopener noreferrer"><div class="stat-num">📐 GeoGebra</div><div class="stat-label">几何与函数动态绘图：初中几何 · 高中函数</div></a>
     <a class="stat-card" href="https://qwerty.kaiyi.cool/" target="_blank" rel="noopener noreferrer"><div class="stat-num">⌨️ Qwerty Learner</div><div class="stat-label">打字背单词：选中考 / 高考词库，接键盘练</div></a>
+    <a class="stat-card" href="english/"><div class="stat-num">🇬🇧 英语精选</div><div class="stat-label">Awesome English 精选版：听力 · 视频 · 阅读 · 语法 · 词汇，中文导航、已过滤成人与社交类</div></a>
   </div>
-  <p class="stat-note">以上是站外工具，点开会在新页面打开；Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
+  <p class="stat-note">PhET / GeoGebra / Qwerty Learner 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
 """
 def add_tools(t):
     if 'kid-tools' in t: return t
@@ -70,3 +71,13 @@ def add_tools(t):
     return t.replace(anchor, anchor + TOOLS_BLOCK, 1)
 edit('index.html', add_tools)
 print('kid-clean done')
+
+# 英语精选入口：工具箱已存在但缺英语卡时补卡（幂等）；english/ 精选页为本站新增目录，上游没有、不受同步影响
+ENG_CARD = '    <a class="stat-card" href="english/"><div class="stat-num">🇬🇧 英语精选</div><div class="stat-label">Awesome English 精选版：听力 · 视频 · 阅读 · 语法 · 词汇，中文导航、已过滤成人与社交类</div></a>\n'
+def add_eng_card(t):
+    if 'href="english/"' in t: return t
+    anchor = '打字背单词：选中考 / 高考词库，接键盘练</div></a>\n'
+    if anchor not in t: return t
+    return t.replace(anchor, anchor + ENG_CARD, 1)
+edit('index.html', add_eng_card)
+edit('index.html', lambda t: t.replace('以上是站外工具，点开会在新页面打开；Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
