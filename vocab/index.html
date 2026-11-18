@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中考词汇 · 孩子版</title>
+<meta name="description" content="中考英语词汇背词页：2,478 个中考词汇 + 1,087 条常考短语，翻卡学习、点读发音、不熟标记复习。词表来自开源项目 lilinji/English（CC BY-NC-SA 4.0）。">
+<link rel="stylesheet" href="../assets/site.css">
+<meta name="theme-color" content="#0f6e62">
+<style>
+  .vb-bar { position: sticky; top: 0; z-index: 20; background: var(--bg, #fff); padding: 10px 0 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .vb-bar button, .vb-bar select, .vb-bar input { border: 1px solid var(--line); border-radius: 999px; padding: 7px 14px; font-size: .95rem; font-weight: 650; color: var(--text); background: var(--bg-elev); }
+  .vb-bar button.on { background: var(--brand, #0f6e62); color: #fff; border-color: var(--brand, #0f6e62); }
+  .vb-bar input { border-radius: 12px; min-width: 170px; }
+  .vb-card { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 22px; text-align: center; margin-top: 14px; }
+  .vb-word { font-size: 2.4rem; font-weight: 800; line-height: 1.2; color: var(--text); word-break: break-word; }
+  .vb-phon { color: var(--muted); font-size: 1.05rem; margin-top: 8px; font-weight: 600; }
+  .vb-trans { font-size: 1.15rem; margin-top: 18px; line-height: 1.6; color: var(--text); white-space: pre-wrap; }
+  .vb-actions { display: flex; gap: 10px; justify-content: center; margin-top: 20px; flex-wrap: wrap; }
+  .vb-actions button { border: 1px solid var(--line); border-radius: 999px; padding: 10px 22px; font-size: 1rem; font-weight: 700; background: var(--bg-elev); color: var(--text); }
+  .vb-actions .ok { background: var(--brand, #0f6e62); color: #fff; border-color: var(--brand, #0f6e62); }
+  .vb-actions .hard { background: #b3261e; color: #fff; border-color: #b3261e; }
+  .vb-prog { color: var(--muted); font-weight: 650; margin-top: 12px; text-align: center; }
+  .vb-list { margin-top: 14px; display: grid; gap: 8px; }
+  .vb-row { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px 14px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .vb-row .w { font-weight: 800; font-size: 1.08rem; color: var(--text); }
+  .vb-row .p { color: var(--muted); font-weight: 600; font-size: .9rem; }
+  .vb-row .t { color: var(--text); font-weight: 600; flex: 1; min-width: 200px; }
+  .vb-row button { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-weight: 700; background: var(--bg-elev); color: var(--text); }
+  .vb-row button.marked { background: #b3261e; color: #fff; border-color: #b3261e; }
+  .back-link { font-weight: 700; text-decoration: none; }
+  .hidden { display: none; }
+</style>
+</head>
+<body class="subject-english">
+<main class="home">
+  <p><a class="back-link" href="../">← 返回首页</a></p>
+  <section class="hero">
+    <p class="eyebrow">课外工具箱 · 英语</p>
+    <h1>中考词汇</h1>
+    <p class="lede">中考要掌握的词都在这里：<b>2,478 个词汇 + 1,087 条常考短语</b>，按字母顺序每 20 个一组。翻卡学习：先看词想意思，点卡片看答案；认识就点 ✓，不认识点 ✗ 标成「不熟」，之后切到「★ 不熟」一组专门复习。点 🔊 用平板自带英文语音读给你听。进度和不熟名单只存在这台平板上。</p>
+    <p class="lede">词表来源：开源项目 lilinji/English 的中考词库（考点精练 / 大纲词汇 / 正序版 / 常考短语四本合并去重，CC BY-NC-SA 4.0）。</p>
+  </section>
+
+  <div class="vb-bar">
+    <button id="tab-words" class="on">📖 单词</button>
+    <button id="tab-phrases">🧩 短语</button>
+    <button id="tab-hard">★ 不熟（<span id="hard-count">0</span>）</button>
+    <select id="group-sel" aria-label="选择组"></select>
+    <button id="mode-btn">列表浏览</button>
+    <input id="search" type="search" placeholder="🔍 搜单词或中文…">
+  </div>
+
+  <div id="study">
+    <div class="vb-card" id="card">
+      <div class="vb-word" id="c-word">…</div>
+      <div class="vb-phon" id="c-phon"></div>
+      <div class="vb-trans hidden" id="c-trans"></div>
+      <div class="vb-actions">
+        <button id="btn-speak">🔊 朗读</button>
+        <button id="btn-flip">看答案</button>
+        <button class="hard" id="btn-hard">✗ 不熟</button>
+        <button class="ok" id="btn-ok">✓ 认识，下一个</button>
+      </div>
+    </div>
+    <p class="vb-prog" id="prog"></p>
+    <div class="vb-actions">
+      <button id="btn-prev-group">← 上一组</button>
+      <button id="btn-next-group">下一组 →</button>
+    </div>
+  </div>
+
+  <div id="list" class="vb-list hidden"></div>
+</main>
+<script src="vocab-data.js"></script>
+<script>
+(function(){
+  var D = window.VOCAB || {words:[], phrases:[]};
+  var sets = { words: D.words, phrases: D.phrases };
+  var SIZE = 20;
+  var state = { set: 'words', group: 0, idx: 0, flipped: false, mode: 'study', query: '' };
+  var hard = {};
+  try { hard = JSON.parse(localStorage.getItem('kid-vocab-hard') || '{}'); } catch(e) { hard = {}; }
+  function saveHard(){ try { localStorage.setItem('kid-vocab-hard', JSON.stringify(hard)); } catch(e){} }
+  function key(set, w){ return set + ':' + w; }
+  function hardList(set){ return sets[set].filter(function(e){ return hard[key(set, e.w)]; }); }
+  function currentList(){
+    if (state.query) {
+      var q = state.query.toLowerCase();
+      return sets[state.set].filter(function(e){ return e.w.toLowerCase().indexOf(q) >= 0 || (e.t && e.t.indexOf(state.query) >= 0); }).slice(0, 200);
+    }
+    if (state.set === 'hard-words') return hardList('words');
+    if (state.set === 'hard-phrases') return hardList('phrases');
+    return sets[state.set];
+  }
+  function groups(){
+    var list = currentList();
+    if (state.query || state.set.indexOf('hard-') === 0) return [list];
+    var out = [];
+    for (var i = 0; i < list.length; i += SIZE) out.push(list.slice(i, i + SIZE));
+    return out.length ? out : [[]];
+  }
+  var $ = function(id){ return document.getElementById(id); };
+  function speak(text){
+    try {
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-GB'; u.rate = 0.92;
+      speechSynthesis.cancel(); speechSynthesis.speak(u);
+    } catch(e){}
+  }
+  function render(){
+    $('hard-count').textContent = Object.keys(hard).length;
+    $('tab-words').className = state.set === 'words' ? 'on' : '';
+    $('tab-phrases').className = state.set === 'phrases' ? 'on' : '';
+    $('tab-hard').className = state.set.indexOf('hard-') === 0 ? 'on' : '';
+    var gs = groups();
+    if (state.group >= gs.length) state.group = gs.length - 1;
+    if (state.group < 0) state.group = 0;
+    var sel = $('group-sel'); sel.innerHTML = '';
+    if (!state.query && state.set.indexOf('hard-') !== 0) {
+      gs.forEach(function(g, i){
+        var o = document.createElement('option'); o.value = i;
+        o.textContent = '第 ' + (i + 1) + ' 组（' + (g[0] ? g[0].w : '') + ' …）';
+        sel.appendChild(o);
+      });
+      sel.value = state.group; sel.style.display = '';
+    } else { sel.style.display = 'none'; }
+    var list = gs[state.group] || [];
+    $('mode-btn').textContent = state.mode === 'study' ? '列表浏览' : '翻卡学习';
+    if (state.mode === 'list') {
+      $('study').classList.add('hidden'); $('list').classList.remove('hidden');
+      var box = $('list'); box.innerHTML = '';
+      if (!list.length) { box.innerHTML = '<p class="vb-prog">这一组是空的。</p>'; return; }
+      list.forEach(function(e){
+        var row = document.createElement('div'); row.className = 'vb-row';
+        var phon = [e.uk ? '英 ' + e.uk : '', e.us ? '美 ' + e.us : ''].filter(Boolean).join('　');
+        row.innerHTML = '<span class="w"></span><span class="p"></span><span class="t"></span>';
+        row.querySelector('.w').textContent = e.w;
+        row.querySelector('.p').textContent = phon;
+        row.querySelector('.t').textContent = e.t || '';
+        var b1 = document.createElement('button'); b1.textContent = '🔊';
+        b1.onclick = function(){ speak(e.w); };
+        var baseSet = state.set.indexOf('hard-') === 0 ? state.set.slice(5) : state.set;
+        var b2 = document.createElement('button'); b2.textContent = hard[key(baseSet, e.w)] ? '★ 已标不熟' : '标不熟';
+        if (hard[key(baseSet, e.w)]) b2.className = 'marked';
+        b2.onclick = function(){
+          var k = key(baseSet, e.w);
+          if (hard[k]) delete hard[k]; else hard[k] = 1;
+          saveHard(); render();
+        };
+        row.appendChild(b1); row.appendChild(b2); box.appendChild(row);
+      });
+      return;
+    }
+    $('list').classList.add('hidden'); $('study').classList.remove('hidden');
+    if (!list.length) {
+      $('c-word').textContent = state.set.indexOf('hard-') === 0 ? '还没有标过不熟的词 🎉' : '没有找到';
+      $('c-phon').textContent = ''; $('c-trans').textContent = ''; $('prog').textContent = '';
+      return;
+    }
+    if (state.idx >= list.length) state.idx = 0;
+    var e = list[state.idx];
+    $('c-word').textContent = e.w;
+    $('c-phon').textContent = [e.uk ? '英 ' + e.uk : '', e.us ? '美 ' + e.us : ''].filter(Boolean).join('　');
+    var tr = $('c-trans'); tr.textContent = e.t || '';
+    tr.classList.toggle('hidden', !state.flipped);
+    $('btn-flip').textContent = state.flipped ? '收起答案' : '看答案';
+    $('prog').textContent = '第 ' + (state.group + 1) + ' 组 · ' + (state.idx + 1) + ' / ' + list.length + '（本组） · 全表共 ' + currentList().length + ' 条';
+  }
+  function next(){
+    var gs = groups(); var list = gs[state.group] || [];
+    state.flipped = false;
+    if (state.idx + 1 < list.length) state.idx++;
+    else if (state.group + 1 < gs.length) { state.group++; state.idx = 0; }
+    else { state.idx = 0; }
+    render();
+  }
+  function setSet(s){ state.set = s; state.group = 0; state.idx = 0; state.flipped = false; render(); }
+  $('tab-words').onclick = function(){ setSet('words'); };
+  $('tab-phrases').onclick = function(){ setSet('phrases'); };
+  $('tab-hard').onclick = function(){ setSet(state.set === 'phrases' ? 'hard-phrases' : 'hard-words'); };
+  $('group-sel').onchange = function(){ state.group = +this.value; state.idx = 0; state.flipped = false; render(); };
+  $('btn-prev-group').onclick = function(){ if (state.group > 0) { state.group--; state.idx = 0; state.flipped = false; render(); } };
+  $('btn-next-group').onclick = function(){ var gs = groups(); if (state.group + 1 < gs.length) { state.group++; state.idx = 0; state.flipped = false; render(); } };
+  $('btn-flip').onclick = function(){ state.flipped = !state.flipped; render(); };
+  $('card').onclick = function(ev){ if (ev.target.tagName !== 'BUTTON') { state.flipped = !state.flipped; render(); } };
+  $('btn-speak').onclick = function(){ var gs = groups(); var e = (gs[state.group] || [])[state.idx]; if (e) speak(e.w); };
+  $('btn-ok').onclick = next;
+  $('btn-hard').onclick = function(){
+    var gs = groups(); var e = (gs[state.group] || [])[state.idx]; if (!e) return;
+    var baseSet = state.set.indexOf('hard-') === 0 ? state.set.slice(5) : state.set;
+    hard[key(baseSet, e.w)] = 1; saveHard(); next();
+  };
+  $('mode-btn').onclick = function(){ state.mode = state.mode === 'study' ? 'list' : 'study'; render(); };
+  $('search').oninput = function(){ state.query = this.value.trim(); state.group = 0; state.idx = 0; if (state.query && state.set.indexOf('hard-') === 0) state.set = 'words'; render(); };
+  render();
+})();
+</script>
+</body>
+</html>
