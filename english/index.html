@@ -2,142 +2,60 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>英语精选资源 · 孩子版</title>
-<meta name="description" content="从 Awesome English（4.6K Star 开源清单）里精选的适龄英语学习资源：听力、视频、阅读、口语、写作、语法、词汇、词典与测评，中文导航，过滤成人与社交类内容。">
-<link rel="stylesheet" href="../assets/site.css">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>英语每日一句 · 中小学·高中知识图谱</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Cpath%20fill%3D%22%23dff3ef%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%221.7%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6.6%204.8H17L27.4%2015.2V25Q27.4%2027.4%2025.2%2027.4H6.6Q4.4%2027.4%204.4%2025.2V7Q4.4%204.8%206.6%204.8Z%22%2F%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M17.7%206.3%2026.1%2014.7H17.7Z%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%221.35%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M17.7%206.3V14.7H26.1%22%2F%3E%3Cpath%20fill%3D%22none%22%20stroke%3D%22%230f6e62%22%20stroke-width%3D%222.15%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20d%3D%22M8.3%2024.2H12.4Q14.2%2024.2%2014.2%2022.4V20.2Q14.2%2018.6%2016%2018.6H18.8%22%2F%3E%3Cpath%20fill%3D%22%230f6e62%22%20d%3D%22M18.5%2016.85%2023%2018.6%2018.5%2020.35Z%22%2F%3E%3C%2Fsvg%3E">
+<link rel="manifest" href="../manifest.webmanifest">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
 <meta name="theme-color" content="#0f6e62">
-<style>
-  .eng-nav { position: sticky; top: 0; z-index: 20; background: var(--bg, #fff); padding: 10px 0 6px; display: flex; flex-wrap: wrap; gap: 8px; }
-  .eng-nav a { border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: .9rem; font-weight: 650; color: var(--text); text-decoration: none; background: var(--bg-elev); }
-  .eng-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-  @media (max-width: 720px) { .eng-grid { grid-template-columns: 1fr 1fr; } }
-  .eng-card { display: block; background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; text-decoration: none; min-width: 0; }
-  .eng-name { font-size: 1.02rem; font-weight: 750; line-height: 1.25; color: var(--text); }
-  .eng-desc { color: var(--muted); font-weight: 600; font-size: .9rem; margin-top: 3px; line-height: 1.45; }
-  .eng-tag { display: inline-block; font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 1px 8px; margin-left: 6px; vertical-align: 2px; background: var(--brand-soft); color: var(--brand-strong); }
-  .eng-text { background: var(--bg-elev); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; }
-  .back-link { font-weight: 700; text-decoration: none; }
-</style>
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="知识图谱">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/pwa.css">
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="subject-english">
-<main class="home">
-  <p><a class="back-link" href="../">← 返回首页</a></p>
-  <section class="hero">
-    <p class="eyebrow">课外工具箱 · 英语</p>
-    <h1>英语精选资源</h1>
-    <p class="lede">从开源清单 Awesome English（GitHub 4.6K Star）里挑出来的适龄部分，按下面的分类排好。已经去掉的：成人播客和脱口秀、找陌生人聊天的社交语伴、付费家教平台、直播电视新闻。剩下的以 BBC、英国文化协会、剑桥这类官方免费资源为主，点开在新页面打开，链接直达官网、不过第三方跳转。</p>
-    <p class="lede">用法建议：不用全看。每天选一样就行——听一段 6 Minute English、读一篇分级新闻、或者用 Qwerty / Quizlet 记一组词，坚持比囤资料有用。</p>
-  </section>
-
-  <nav class="eng-nav" aria-label="分类导航">
-    <a href="#methods">🧭 学习方法</a>
-    <a href="#listening">🎧 听力</a>
-    <a href="#watching">📺 看视频</a>
-    <a href="#reading">📖 阅读</a>
-    <a href="#speaking">🗣️ 开口说</a>
-    <a href="#writing">✍️ 写作</a>
-    <a href="#grammar">📐 语法</a>
-    <a href="#vocab">🃏 词汇卡片</a>
-    <a href="#dict">📚 词典发音</a>
-    <a href="#tests">🎯 练习测评</a>
-    <a href="#books">📕 读原版书</a>
+<body class="page-english">
+<a class="top-banner" href="https://test.pansgo.com/?from=math-top" target="_blank" rel="noopener">🧠 儿童智商测试</a>
+<header class="site-header no-print">
+  <a class="brand" href="../">
+    <svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><path fill="var(--logo-sheet)" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round" d="M6.6 4.8H17L27.4 15.2V25Q27.4 27.4 25.2 27.4H6.6Q4.4 27.4 4.4 25.2V7Q4.4 4.8 6.6 4.8Z"/><path fill="var(--logo-fold)" d="M17.7 6.3 26.1 14.7H17.7Z"/><path fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" d="M17.7 6.3V14.7H26.1"/><path fill="none" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round" d="M8.3 24.2H12.4Q14.2 24.2 14.2 22.4V20.2Q14.2 18.6 16 18.6H18.8"/><path fill="currentColor" d="M18.5 16.85 23 18.6 18.5 20.35Z"/></svg>
+    <span class="brand-copy">
+      <span class="brand-name">中小学·高中知识图谱</span>
+      <span class="brand-kicker">学习路径</span>
+    </span>
+  </a>
+  <nav class="site-nav" aria-label="主导航">
+    <div class="page-links">
+      <a class="nav-link" href="../">首页</a>
+      <a class="nav-link" href="../explore/">知识图谱</a>
+      <a class="nav-link" href="../diagnose/">诊断</a>
+      <a class="nav-link" href="../children/">档案</a>
+      <a class="nav-link" href="../wrongbook/">错题本</a>
+      <a class="nav-link active" href="./" aria-current="page">每日一句</a>
+      <a class="nav-link" href="../goods/">学习好物</a>
+      <a class="nav-link" href="https://github.com/xiaoyang111222/cn-math-taxonomy" target="_blank" rel="noopener noreferrer">关于</a>
+    </div>
   </nav>
-
-  <h2 class="section-title" id="methods">🧭 先看方法：怎么学比学什么更重要</h2>
-  <div class="eng-grid">
-    <div class="eng-text"><div class="eng-name">可理解输入</div><div class="eng-desc">专挑「能看懂八九成、只带一点点新东西」的内容看和听。太难的全是生词，坚持不下去；刚刚好的难度，进步最快。</div></div>
-    <div class="eng-text"><div class="eng-name">影子跟读 Shadowing</div><div class="eng-desc">放一句原声，立刻小声跟着念，尽量贴住语调和节奏。练发音和听力最有效的方法之一，用下面的 6 Minute English 就能练。</div></div>
-    <div class="eng-text"><div class="eng-name">摘句做卡片</div><div class="eng-desc">在阅读和听力里碰到好句子，整句摘下来做成记忆卡片（配 Quizlet / Anki），记「单词在句子里怎么用」，不要孤零零背单词表。</div></div>
-    <div class="eng-text"><div class="eng-name">大量阅读简单的书</div><div class="eng-desc">读很多「觉得简单、而且有意思」的英文书和文章，不查词典、读得快。量上去了，词汇和语感是自然长出来的。</div></div>
-  </div>
-
-  <h2 class="section-title" id="listening">🎧 听力</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://www.bbc.co.uk/learningenglish" target="_blank" rel="noopener noreferrer"><div class="eng-name">BBC Learning English<span class="eng-tag">入门起</span></div><div class="eng-desc">BBC 官方免费英语课，视频、音频、练习全都有，从入门到进阶的主线资源</div></a>
-    <a class="eng-card" href="https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" target="_blank" rel="noopener noreferrer"><div class="eng-name">6 Minute English<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">BBC 招牌栏目：每集 6 分钟聊一个话题，带文字稿和生词讲解，最适合影子跟读</div></a>
-    <a class="eng-card" href="https://learnenglish.britishcouncil.org/" target="_blank" rel="noopener noreferrer"><div class="eng-name">British Council LearnEnglish<span class="eng-tag">入门起</span></div><div class="eng-desc">英国文化协会官方站，语法、词汇、听说读写练习齐全；站内还有 Kids（儿童）和 Teens（青少年）专区</div></a>
-    <a class="eng-card" href="https://spotlightenglish.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Spotlight English<span class="eng-tag">入门</span></div><div class="eng-desc">慢速英语广播，每天约 15 分钟，语速特意放慢，适合刚开始练听力</div></a>
-    <a class="eng-card" href="https://www.esl-lab.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">ESL Lab<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">听力理解练习：听一段日常对话，再答题，分难度等级，老牌免费站</div></a>
-    <a class="eng-card" href="https://edition.cnn.com/cnn10" target="_blank" rel="noopener noreferrer"><div class="eng-name">CNN 10<span class="eng-tag">中级</span></div><div class="eng-desc">给学生的 10 分钟世界新闻讲解，语速清楚、带字幕，适合初中以上边看新闻边学英语</div></a>
-    <a class="eng-card" href="https://www.leonardoenglish.com/podcasts" target="_blank" rel="noopener noreferrer"><div class="eng-name">English Learning for Curious Minds<span class="eng-tag">进阶</span></div><div class="eng-desc">播客讲历史、政治和奇闻，带文字稿和生词讲解，适合高中阶段磨耳朵</div></a>
-    <a class="eng-card" href="https://www.npr.org/" target="_blank" rel="noopener noreferrer"><div class="eng-name">NPR<span class="eng-tag">进阶</span></div><div class="eng-desc">美国国家公共广播，很多节目带文字稿；先挑感兴趣的话题听，不用追求全懂</div></a>
-  </div>
-
-  <h2 class="section-title" id="watching">📺 看视频</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://ed.ted.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">TED-Ed<span class="eng-tag">中级</span></div><div class="eng-desc">几分钟一集的动画科普课，带字幕和课后小问题，科学、历史、文学都有</div></a>
-    <a class="eng-card" href="https://www.youtube.com/@EnglishwithLucy" target="_blank" rel="noopener noreferrer"><div class="eng-name">English with Lucy<span class="eng-tag">中级</span></div><div class="eng-desc">英式英语教学频道，讲发音、词汇和日常表达，发音清楚（YouTube）</div></a>
-    <a class="eng-card" href="https://www.youtube.com/playlist?list=PLcetZ6gSk96_zHuVg6Ecy2F7j4Aq4valQ" target="_blank" rel="noopener noreferrer"><div class="eng-name">BBC 语法视频课<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">BBC 官方播放列表：一个语法点一个短视频，讲完马上能用（YouTube）</div></a>
-    <a class="eng-card" href="https://www.youtube.com/playlist?list=PLcetZ6gSk9692RVJgFx4JXwFG4mWK0XGj" target="_blank" rel="noopener noreferrer"><div class="eng-name">BBC English HowTo<span class="eng-tag">入门</span></div><div class="eng-desc">BBC 官方播放列表：日常场景里的实用短句，学完就能开口说（YouTube）</div></a>
-    <a class="eng-card" href="https://www.youtube.com/user/dailydictation" target="_blank" rel="noopener noreferrer"><div class="eng-name">Daily Dictation<span class="eng-tag">中级</span></div><div class="eng-desc">每日听写练习：听一句、写一句、对答案，练听力准确度（YouTube）</div></a>
-  </div>
-  <p class="stat-note">标（YouTube）的需要能打开 YouTube 的网络环境；打不开就先用 BBC 和 TED-Ed 官网，一样能学。</p>
-
-  <h2 class="section-title" id="reading">📖 阅读</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://xckevin.github.io/magic-english-buddy/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Magic English Buddy<span class="eng-tag">L1–L7</span></div><div class="eng-desc">分级阅读 App：90 篇故事，朗读逐词高亮、点词查词、跟读和闯关练习；在它的设置里下载音频包后可离线。包装偏低龄，初中可以从 L4 开始往后读</div></a>
-    <a class="eng-card" href="https://www.newsinlevels.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">News in Levels<span class="eng-tag">入门起</span></div><div class="eng-desc">同一条新闻写成 3 个难度版本，从最简单的开始读，慢慢往上升</div></a>
-    <a class="eng-card" href="https://www.breakingnewsenglish.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Breaking News English<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">用新闻学英语：每课带朗读音频、阅读和练习题，分 7 个等级</div></a>
-    <a class="eng-card" href="https://www.usingenglish.com/comprehension/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Reading Comprehension Exercises<span class="eng-tag">中级</span></div><div class="eng-desc">阅读理解专项练习：短文加选择题，分 3 个难度（UsingEnglish）</div></a>
-  </div>
-
-  <h2 class="section-title" id="speaking">🗣️ 开口说</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://www.youtube.com/user/rachelsenglish" target="_blank" rel="noopener noreferrer"><div class="eng-name">Rachel's English<span class="eng-tag">中级</span></div><div class="eng-desc">美式发音教学：口型、连读、弱读讲得最细的频道之一（YouTube）</div></a>
-    <a class="eng-card" href="https://www.talkenglish.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">TalkEnglish<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">按场景练口语：日常、学校、旅行等对话，带音频跟读</div></a>
-    <a class="eng-card" href="https://speechling.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Speechling<span class="eng-tag">入门起</span></div><div class="eng-desc">录下自己读的句子，拿发音反馈；免费版够用，不用跟陌生人聊天</div></a>
-    <a class="eng-card" href="https://www.elsaspeak.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">ELSA Speak<span class="eng-tag">App</span></div><div class="eng-desc">AI 发音纠正 App，逐个音标指出哪里读得不准；有免费版，进阶功能付费，先用免费的</div></a>
-  </div>
-
-  <h2 class="section-title" id="writing">✍️ 写作</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://writeandimprove.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Write &amp; Improve（剑桥）<span class="eng-tag">中级</span></div><div class="eng-desc">剑桥官方写作练习：写完马上给等级和修改建议，免费，按水平选题目</div></a>
-    <a class="eng-card" href="https://www.hemingwayapp.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Hemingway Editor<span class="eng-tag">中级</span></div><div class="eng-desc">把作文粘进去，它会标出太长太绕的句子，帮你把话写简单、写清楚；网页版免费</div></a>
-  </div>
-  <p class="stat-note">小窍门（来自原清单）：每天写 15 分钟，先写简单的；写完自己大声读一遍，很多错误读着就发现了。</p>
-
-  <h2 class="section-title" id="grammar">📐 语法</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://www.englishclub.com/grammar/" target="_blank" rel="noopener noreferrer"><div class="eng-name">English Club Grammar<span class="eng-tag">入门起</span></div><div class="eng-desc">语法规则讲得清楚，带例句和小练习，查某个语法点时很好用</div></a>
-    <a class="eng-card" href="https://www.ego4u.com" target="_blank" rel="noopener noreferrer"><div class="eng-name">Ego4u<span class="eng-tag">入门 · 中级</span></div><div class="eng-desc">语法讲解配互动测试，学完一个点马上做题验证</div></a>
-    <a class="eng-card" href="https://www.myenglishpages.com/grammar/" target="_blank" rel="noopener noreferrer"><div class="eng-name">My English Pages<span class="eng-tag">中级</span></div><div class="eng-desc">语法参考手册：讲解加例句加练习，适合系统过一遍</div></a>
-    <a class="eng-card" href="https://www.cambridge.org/us/cambridgeenglish/catalog/grammar-vocabulary-and-pronunciation/english-grammar-use-5th-edition" target="_blank" rel="noopener noreferrer"><div class="eng-name">English Grammar in Use<span class="eng-tag">纸书</span></div><div class="eng-desc">最经典的英语语法书（Murphy 著），左页讲解右页练习；这是剑桥官网的书目页，书在书店和图书馆都能找到</div></a>
-  </div>
-
-  <h2 class="section-title" id="vocab">🃏 词汇卡片</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://quizlet.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Quizlet<span class="eng-tag">入门起</span></div><div class="eng-desc">单词卡片平台：自己建词表，或用别人做好的课本词表，多种练习模式</div></a>
-    <a class="eng-card" href="https://apps.ankiweb.net/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Anki<span class="eng-tag">中级</span></div><div class="eng-desc">间隔重复卡片软件，记单词最硬核的方法；电脑版免费，适合把摘的好句子做成卡片</div></a>
-    <a class="eng-card" href="https://www.memrise.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Memrise<span class="eng-tag">入门起</span></div><div class="eng-desc">用记忆技巧和短视频记单词，趣味性强一些</div></a>
-    <a class="eng-card" href="https://tatoeba.org/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Tatoeba 例句库<span class="eng-tag">中级</span></div><div class="eng-desc">查一个词在真实句子里怎么用，很多例句带中文翻译和发音</div></a>
-    <a class="eng-card" href="https://zbenglish.net/sites/basic/basiceng.html" target="_blank" rel="noopener noreferrer"><div class="eng-name">Ogden's Basic English 850 词<span class="eng-tag">入门</span></div><div class="eng-desc">英语最核心的 850 个词清单，先把这些词用熟，比贪多背大词表更管用</div></a>
-  </div>
-  <p class="stat-note">本站首页工具箱里的 Qwerty Learner（打字背单词，选中考 / 高考词库）也归这一类，两个配合用。</p>
-
-  <h2 class="section-title" id="dict">📚 词典与发音</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://dictionary.cambridge.org/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Cambridge Dictionary<span class="eng-tag">首选</span></div><div class="eng-desc">剑桥学习者词典：释义简单、带英式美式发音和例句，还有中文翻译</div></a>
-    <a class="eng-card" href="https://www.oxfordlearnersdictionaries.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Oxford Learner's Dictionaries<span class="eng-tag">首选</span></div><div class="eng-desc">牛津学习者词典，释义和例句都是为学英语的人写的</div></a>
-    <a class="eng-card" href="https://forvo.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Forvo<span class="eng-tag">发音</span></div><div class="eng-desc">真人发音库：同一个词能听英国人、美国人分别怎么读</div></a>
-    <a class="eng-card" href="https://youglish.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">YouGlish<span class="eng-tag">发音</span></div><div class="eng-desc">搜一个词，看它在真实视频里出现的片段，听语境里的发音（基于 YouTube）</div></a>
-    <a class="eng-card" href="https://visuwords.com/" target="_blank" rel="noopener noreferrer"><div class="eng-name">Visuwords<span class="eng-tag">好玩</span></div><div class="eng-desc">把单词画成关系图：近义词、反义词、词族一目了然，像逛思维导图</div></a>
-  </div>
-
-  <h2 class="section-title" id="tests">🎯 练习与测评</h2>
-  <div class="eng-grid">
-    <a class="eng-card" href="https://www.duolingo.com" target="_blank" rel="noopener noreferrer"><div class="eng-name">Duolingo 多邻国<span class="eng-tag">入门</span></div><div class="eng-desc">游戏化每日练习，适合低年级和刚起步时保持每天碰英语的习惯</div></a>
-    <a class="eng-card" href="https://www.cambridgeenglish.org/test-your-english/" target="_blank" rel="noopener noreferrer"><div class="eng-name">剑桥 Test Your English<span class="eng-tag">测评</span></div><div class="eng-desc">剑桥官方免费小测：25 道题，大致测出自己在哪个水平，再挑对应难度的资源</div></a>
-  </div>
-
-  <h2 class="section-title" id="books">📕 读原版书（从简单的开始）</h2>
-  <div class="eng-grid">
-    <div class="eng-text"><div class="eng-name">《哈利·波特》系列</div><div class="eng-desc">原清单的推荐：语言难度随册数慢慢变高，故事熟、读得下去，是很多人的第一套英文原版书。</div></div>
-    <div class="eng-text"><div class="eng-name">《动物农场》Animal Farm</div><div class="eng-desc">篇幅短、语言简单，适合高中阶段挑战整本读完的第一本小说。</div></div>
-  </div>
-
-  <p class="stat-note" style="margin-top:28px">来源：精选自开源清单 <a href="https://github.com/yvoronoy/awesome-english" target="_blank" rel="noopener noreferrer">yvoronoy/awesome-english</a>（CC0 1.0），分类与说明为孩子版重写；未收录成人播客 / 脱口秀、社交语伴、付费家教与一对一平台。AI 对话工具（如 ChatGPT）请在家长陪同下使用。资源都在站外，点开在新页面打开。Magic English Buddy 为另行收录的开源应用（xckevin/magic-english-buddy，CC BY-NC-SA 4.0），链向其官方演示站。</p>
-  <p><a class="back-link" href="../">← 返回首页</a></p>
+</header>
+<main class="eng" id="root">
+  <h1>英语每日一句</h1>
+  <p class="muted">每天只学 1 句新句，约 3 分钟：听朗读、看动画猜意思、拆词、排词卡、换词造句。学完 30 句。不登录时进度只存在这台浏览器；登录账号（可选）后会同步到云端。</p>
+  <div class="kid-picker no-print" id="picker"></div>
+  <div id="app" aria-live="polite"><p class="muted">加载中……</p></div>
 </main>
+<footer class="site-footer">
+  <p><a href="https://github.com/xiaoyang111222/cn-math-taxonomy/issues/new/choose">提交 Issue</a></p>
+</footer>
+<script src="../assets/children.js"></script>
+<script src="../assets/activity.js"></script>
+<script src="../assets/english.js"></script>
+<script src="scenes.js"></script>
+<script src="app.js"></script>
+<script src="../assets/account.js"></script>
+<script src="../assets/sync.js"></script>
+<script src="../assets/stats-config.js"></script>
+<script src="../assets/stats.js"></script>
+<script src="../assets/pwa.js"></script>
 </body>
 </html>
