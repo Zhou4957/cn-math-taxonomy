@@ -356,13 +356,26 @@
     [['guess', '猜出意思'], ['order', '排序正确'], ['build', '完成造句']].forEach(function (c) {
       var s = el('span', 'check' + (checks[c[0]] ? ' done' : ''), (checks[c[0]] ? '✓ ' : '○ ') + c[1]);
       checkEls[c[0]] = { node: s, label: c[1] };
+      s.addEventListener('click', function () {
+        if (checks[c[0]]) return;
+        var target = c[0] === 'guess' ? trans : (c[0] === 'order' ? sortBox.node : opts);
+        if (target && target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (c[0] === 'guess') { var sm = trans.querySelector('details:not([open]) summary'); if (sm) setTimeout(function () { sm.click(); }, 350); }
+      });
       checkBox.appendChild(s);
     });
     if (mode !== 'revisit') card.appendChild(el('h3', 'sec', '今日三项打卡'));
     if (mode !== 'revisit') card.appendChild(checkBox);
-    var finishBtn = btn('完成今日一句', 'primary finish', function () { if (EN.checksComplete(checks)) onDone(checks); });
-    finishBtn.disabled = true;
-    if (mode !== 'revisit') card.appendChild(finishBtn);
+    var finishHint = el('p', 'finish-hint muted', '');
+    var finishBtn = btn('完成今日一句', 'primary finish', function () {
+      if (EN.checksComplete(checks)) { onDone(checks); return; }
+      var miss = [];
+      if (!checks.guess) miss.push('「猜出意思」：点上面的○猜出意思，或打开第 2 步任意一层翻译');
+      if (!checks.order) miss.push('「排序正确」：完成第 5 步词卡排序');
+      if (!checks.build) miss.push('「完成造句」：完成第 6 步换词造句');
+      finishHint.textContent = '还差 ' + miss.join('；');
+    });
+    if (mode !== 'revisit') { card.appendChild(finishBtn); card.appendChild(finishHint); }
 
     function mark(key) {
       if (checks[key]) return;
@@ -370,7 +383,7 @@
       var c = checkEls[key];
       c.node.className = 'check done';
       c.node.textContent = '✓ ' + c.label;
-      finishBtn.disabled = !EN.checksComplete(checks);
+      if (EN.checksComplete(checks)) finishHint.textContent = '三项都完成了，点「完成今日一句」打卡。';
     }
     return card;
   }

@@ -21,7 +21,8 @@ def edit(rel, fn):
         fp.write_text(t2, encoding='utf-8')
         print('cleaned', rel)
 
-for rel in ['index.html','explore/index.html','diagnose/index.html','children/index.html','children/history.html']:
+ALL_PAGES = ['index.html','explore/index.html','diagnose/index.html','children/index.html','children/history.html','english/index.html','finals/index.html','wrongbook/index.html','vocab/index.html']
+for rel in ALL_PAGES:
     edit(rel, lambda t: re.sub(r'\s*<a class="top-banner"[^>]*>.*?</a>', '', t, count=1))
     edit(rel, lambda t: re.sub(r'\s*<a[^>]*href="https://pansgo\.com"[^>]*>.*?</a>', '', t, count=1, flags=re.S))
 edit('index.html', lambda t: re.sub(r'\s*<a class="iq-card"[^>]*>.*?</a>', '', t, count=1, flags=re.S))
@@ -33,7 +34,7 @@ def stats_off(t):
     return t
 edit('assets/stats-config.js', stats_off)
 # 「学习好物」购物入口（各页导航 + 首页大按钮）与商品页本体
-for rel in ['index.html','explore/index.html','diagnose/index.html','children/index.html','children/history.html']:
+for rel in ALL_PAGES:
     edit(rel, lambda t: re.sub(r'\s*<a[^>]*href="(?:\.\./)?goods/"[^>]*>.*?</a>', '', t, flags=re.S))
 goods_dir = root / 'goods'
 if goods_dir.is_dir():
@@ -52,6 +53,41 @@ def fix_result(t):
     k = t.find('\n', j)
     return t[:k+1] + '    show(page);\n    mountPathGraph(sum);\n' + t[k+1:]
 edit('diagnose/app.js', fix_result)
+
+# 每日一句（english/app.js）可用性修复：上游原版里「猜出意思」只能靠展开第 2 步翻译层打勾，
+# 打卡条本身点不动、「完成今日一句」未集齐三项时是禁用态、点了毫无提示，孩子会以为坏了。
+# 孩子版改为：打卡条可点（未完成项点击后滚动到对应步骤；「猜出意思」还会顺手打开第一层翻译），
+# 完成按钮不再禁用，未集齐时点击会写明还差哪项、怎么做。
+def fix_daily(t):
+    if 'finishHint' in t: return t
+    a1 = "      checkEls[c[0]] = { node: s, label: c[1] };\n      checkBox.appendChild(s);"
+    b1 = ("      checkEls[c[0]] = { node: s, label: c[1] };\n"
+          "      s.addEventListener('click', function () {\n"
+          "        if (checks[c[0]]) return;\n"
+          "        var target = c[0] === 'guess' ? trans : (c[0] === 'order' ? sortBox.node : opts);\n"
+          "        if (target && target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth', block: 'center' });\n"
+          "        if (c[0] === 'guess') { var sm = trans.querySelector('details:not([open]) summary'); if (sm) setTimeout(function () { sm.click(); }, 350); }\n"
+          "      });\n"
+          "      checkBox.appendChild(s);")
+    if a1 not in t: return t
+    t = t.replace(a1, b1, 1)
+    a2 = "    var finishBtn = btn('完成今日一句', 'primary finish', function () { if (EN.checksComplete(checks)) onDone(checks); });\n    finishBtn.disabled = true;\n    if (mode !== 'revisit') card.appendChild(finishBtn);"
+    b2 = ("    var finishHint = el('p', 'finish-hint muted', '');\n"
+          "    var finishBtn = btn('完成今日一句', 'primary finish', function () {\n"
+          "      if (EN.checksComplete(checks)) { onDone(checks); return; }\n"
+          "      var miss = [];\n"
+          "      if (!checks.guess) miss.push('「猜出意思」：点上面的○猜出意思，或打开第 2 步任意一层翻译');\n"
+          "      if (!checks.order) miss.push('「排序正确」：完成第 5 步词卡排序');\n"
+          "      if (!checks.build) miss.push('「完成造句」：完成第 6 步换词造句');\n"
+          "      finishHint.textContent = '还差 ' + miss.join('；');\n"
+          "    });\n"
+          "    if (mode !== 'revisit') { card.appendChild(finishBtn); card.appendChild(finishHint); }")
+    if a2 not in t: return t
+    t = t.replace(a2, b2, 1)
+    t = t.replace("      finishBtn.disabled = !EN.checksComplete(checks);",
+                  "      if (EN.checksComplete(checks)) finishHint.textContent = '三项都完成了，点「完成今日一句」打卡。';", 1)
+    return t
+edit('english/app.js', fix_daily)
 # 课外工具箱入口（PhET / GeoGebra / Qwerty Learner）：同步后若被上游覆盖则补回，幂等
 TOOLS_BLOCK = """
   <!-- kid-tools -->
@@ -62,12 +98,8 @@ TOOLS_BLOCK = """
     <a class="stat-card" href="https://qwerty.kaiyi.cool/" target="_blank" rel="noopener noreferrer"><div class="stat-num">⌨️ Qwerty Learner</div><div class="stat-label">打字背单词：选中考 / 高考词库，接键盘练</div></a>
     <a class="stat-card" href="english/"><div class="stat-num">🇬🇧 英语精选</div><div class="stat-label">Awesome English 精选版：听力 · 视频 · 阅读 · 语法 · 词汇，中文导航、已过滤成人与社交类</div></a>
     <a class="stat-card" href="https://xckevin.github.io/magic-english-buddy/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🧙 Magic English Buddy</div><div class="stat-label">分级阅读跟读：L1–L7 共 90 篇故事，逐词高亮朗读、点词查词，在设置里下载音频后可离线</div></a>
-    <a class="stat-card" href="https://gjenglish.com" target="_blank" rel="noopener noreferrer"><div class="stat-num">⭐ 英语星空</div><div class="stat-label">人教版初中英语：课文原声点读（七上到九年级）· 单词插画 · 中考真题，点一句读一句</div></a>
-    <a class="stat-card" href="https://congcongstudy.velixir.run/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🎓 聪聪学堂</div><div class="stat-label">四学段全科互动课程（小学到大学）：课文听读 · 单元练习，初中英语有人教 / 外研 / 沪教 / 译林多版本</div></a>
-    <a class="stat-card" href="vocab/"><div class="stat-num">📚 中考词汇</div><div class="stat-label">中考词汇 2,478 个 + 常考短语 1,087 条：翻卡背词、点读发音、标「不熟」反复练</div></a>
-    <a class="stat-card" href="https://deanchen.me/jiangshan-map/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🗺️ 江山时序</div><div class="stat-label">中国历史交互地图：拖时间轴看 2400 年疆域变化，点古城看沿革、查人物行迹</div></a>
   </div>
-  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 / 江山时序 是站外工具，点开会在新页面打开；英语精选、中考词汇是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。</p>
+  <p class="stat-note">PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。</p>
 """
 def add_tools(t):
     if 'kid-tools' in t: return t
@@ -96,43 +128,3 @@ def add_buddy_card(t):
     return t.replace(anchor, anchor + BUDDY_CARD, 1)
 edit('index.html', add_buddy_card)
 edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
-
-# 英语星空入口：工具箱已有 Buddy 卡但缺英语星空卡时补卡（幂等）
-GALAXY_CARD = '    <a class="stat-card" href="https://gjenglish.com" target="_blank" rel="noopener noreferrer"><div class="stat-num">⭐ 英语星空</div><div class="stat-label">人教版初中英语：课文原声点读（七上到九年级）· 单词插画 · 中考真题，点一句读一句</div></a>\n'
-def add_galaxy_card(t):
-    if 'gjenglish.com' in t: return t
-    anchor = '在设置里下载音频后可离线</div></a>\n'
-    if anchor not in t: return t
-    return t.replace(anchor, anchor + GALAXY_CARD, 1)
-edit('index.html', add_galaxy_card)
-edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。'))
-
-# 聪聪学堂入口：工具箱已有英语星空卡但缺聪聪学堂卡时补卡（幂等）
-CONG_CARD = '    <a class="stat-card" href="https://congcongstudy.velixir.run/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🎓 聪聪学堂</div><div class="stat-label">四学段全科互动课程（小学到大学）：课文听读 · 单元练习，初中英语有人教 / 外研 / 沪教 / 译林多版本</div></a>\n'
-def add_cong_card(t):
-    if 'congcongstudy' in t: return t
-    anchor = '点一句读一句</div></a>\n'
-    if anchor not in t: return t
-    return t.replace(anchor, anchor + CONG_CARD, 1)
-edit('index.html', add_cong_card)
-edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。'))
-
-# 中考词汇入口：工具箱已有聪聪学堂卡但缺中考词汇卡时补卡（幂等）；vocab/ 背词页为本站新增目录，上游没有、不受同步影响
-VOCAB_CARD = '    <a class="stat-card" href="vocab/"><div class="stat-num">📚 中考词汇</div><div class="stat-label">中考词汇 2,478 个 + 常考短语 1,087 条：翻卡背词、点读发音、标「不熟」反复练</div></a>\n'
-def add_vocab_card(t):
-    if 'href="vocab/"' in t: return t
-    anchor = '初中英语有人教 / 外研 / 沪教 / 译林多版本</div></a>\n'
-    if anchor not in t: return t
-    return t.replace(anchor, anchor + VOCAB_CARD, 1)
-edit('index.html', add_vocab_card)
-edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选、中考词汇是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。'))
-
-# 江山时序入口：工具箱已有中考词汇卡但缺江山时序卡时补卡（幂等）；链官方演示站，不 fork、不自托管
-JIANGSHAN_CARD = '    <a class="stat-card" href="https://deanchen.me/jiangshan-map/" target="_blank" rel="noopener noreferrer"><div class="stat-num">🗺️ 江山时序</div><div class="stat-label">中国历史交互地图：拖时间轴看 2400 年疆域变化，点古城看沿革、查人物行迹</div></a>\n'
-def add_jiangshan_card(t):
-    if 'deanchen.me/jiangshan-map' in t: return t
-    anchor = '标「不熟」反复练</div></a>\n'
-    if anchor not in t: return t
-    return t.replace(anchor, anchor + JIANGSHAN_CARD, 1)
-edit('index.html', add_jiangshan_card)
-edit('index.html', lambda t: t.replace('PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 是站外工具，点开会在新页面打开；英语精选、中考词汇是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。', 'PhET / GeoGebra / Qwerty Learner / Magic English Buddy / 英语星空 / 聪聪学堂 / 江山时序 是站外工具，点开会在新页面打开；英语精选、中考词汇是本站内页。Qwerty Learner 需要键盘，平板接上键盘后使用。聪聪学堂闲置后会休眠，第一次打开等十几秒唤醒。'))
