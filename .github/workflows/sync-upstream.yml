@@ -20,16 +20,18 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Merge upstream and re-apply kid-clean
+      - name: Sync data only from upstream and re-apply kid-clean
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add upstream https://github.com/xiaoyang111222/cn-math-taxonomy.git
           git fetch upstream
-          git merge --no-commit -X theirs upstream/main || { git checkout --theirs .; git add -A; }
-          git rm -rf --ignore-unmatch .github/workflows
-          git checkout HEAD -- .github/workflows
-          if [ -f .git/MERGE_HEAD ]; then git commit --no-edit; fi
+          # Upstream moved the website source to a private repo on 2026-11-25
+          # (commit 6cb36a8); upstream/main is now data-only. Never merge it:
+          # a merge would delete the kid site's frontend (index.html, assets/, ...).
+          # Sync only the data tree, including upstream deletions inside data/.
+          git rm -r -q --ignore-unmatch data
+          git checkout upstream/main -- data
           python3 scripts/kid-clean.py
-          if [ -n "$(git status --porcelain)" ]; then git add -A; git commit -m "sync: upstream update + re-apply kid-clean"; fi
+          if [ -n "$(git status --porcelain)" ]; then git add -A; git commit -m "sync: upstream data update + re-apply kid-clean"; fi
           git push origin main
